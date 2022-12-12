@@ -15,13 +15,14 @@ const server = express();
 //Middleware
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
-server.set("secretKey", "nodeRestApi");
+server.set("secretKey", process.env.SESSION_SECRET || "nodeRestApi");
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
+
 
 //Aqui van las rutas
 const ingredientRoute = require('./routes/ingredient.routes');
