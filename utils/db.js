@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const DB_URL = process.env.DB_URL || 'mongodb://localhost:27017/foody';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/foody';
 
-// Función que conecta nuestro servidor a la base de datos de MongoDB mediante mongoose
-const connect = () => mongoose.connect(DB_URL, {
+const connect = () => mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

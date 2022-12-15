@@ -46,10 +46,10 @@ const ingredients = [
 
 const ingredientDocuments = ingredients.map(item => new Ingredient(item));
 
-const DB_URL = process.env.DB_URL || 'mongodb://localhost:27017/foody';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/foody';
 
 mongoose
-  .connect(DB_URL, {
+  .connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     })
