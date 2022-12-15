@@ -25,8 +25,6 @@ router.get('/:id', async(req, res, next)=>{
     }
 });
 
-//fileMiddlewares.upload.single('image'), 
-//,fileMiddlewares.uploadToCloudinary
 //post
 router.post('/', [fileMiddlewares.parser.single('image')], async(req, res, next)=>{
     try{
