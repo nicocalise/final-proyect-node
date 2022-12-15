@@ -1,6 +1,5 @@
 const express = require('express');
 const fileMiddlewares = require('../middlewares/file.middleware');
-
 const Recipe = require('../models/Recipe');
 
 const router = express.Router();
@@ -26,8 +25,10 @@ router.get('/:id', async(req, res, next)=>{
     }
 });
 
+//fileMiddlewares.upload.single('image'), 
+
 //post
-router.post('/', [fileMiddlewares.upload.single('image'), fileMiddlewares.uploadToCloudinary], async(req, res, next)=>{
+router.post('/', [fileMiddlewares.parser.single('image'),fileMiddlewares.uploadToCloudinary], async(req, res, next)=>{
     try{
         const recipePicture = req.file_url ? req.file_url : null;
         const recipe = new Recipe({
