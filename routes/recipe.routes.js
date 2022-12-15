@@ -29,7 +29,7 @@ router.get('/:id', async(req, res, next)=>{
 //post
 router.post('/', [fileMiddlewares.upload.single('image'), fileMiddlewares.uploadToCloudinary], async(req, res, next)=>{
     try{
-        const recipePicture = req.file ? req.file.filename : null;
+        const recipePicture = req.file_url ? req.file_url : null;
         const recipe = new Recipe({
             name: req.body.name,
             image: recipePicture,
@@ -65,7 +65,16 @@ router.put('/:recipeId/add-ingredient', async (req, res, next) => {
     }
 });
 
-
+//delete
+router.delete('/:id', async (req, res, next) => {
+    try {
+        const {id} = req.params;
+        await Recipe.findByIdAndDelete(id);
+        return res.status(200).json('Recipe deleted!');
+    } catch (error) {
+        return next(error);
+    }
+});
 
 
 

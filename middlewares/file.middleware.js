@@ -36,10 +36,8 @@ const uploadToCloudinary = async (req, res, next) => {
 		const filePath = req.file.path;
     const image = await cloudinary.uploader.upload(filePath);
 
-		// Borramos el archivo local
     await fs.unlinkSync(filePath);
-	
-		// Añadimos la propiedad file_url a nuestro Request
+
     req.file_url = image.secure_url;
 		return next();
     }catch(error){
