@@ -26,11 +26,11 @@ router.get('/:id', async(req, res, next)=>{
 });
 
 //fileMiddlewares.upload.single('image'), 
-
+//,fileMiddlewares.uploadToCloudinary
 //post
-router.post('/', [fileMiddlewares.parser.single('image'),fileMiddlewares.uploadToCloudinary], async(req, res, next)=>{
+router.post('/', [fileMiddlewares.parser.single('image')], async(req, res, next)=>{
     try{
-        const recipePicture = req.file_url ? req.file_url : null;
+        const recipePicture = req.file.path ? req.file.path : null;
         const recipe = new Recipe({
             name: req.body.name,
             image: recipePicture,
